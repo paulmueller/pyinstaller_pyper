@@ -98,15 +98,15 @@ after_test:
 
 artifacts:
   # Archive the generated wheel package in the ci.appveyor.com build report.
-  #- path: dist\*
   # InnoSetup files
-  - path: Output\*
+  - path: freeze_appveyor\Output\*
+  - path: dist\pyper_example
 
 deploy:
   provider: GitHub
   auth_token:
     secure: /b5SfmYssAfLaWi0qkPhxR5CruSVBZUurSQLEL3RAaRlHn6HTPrkIqvrLDk/8JxB
-  artifact: /.*\.exe/
+  artifact: /.*\.exe/, /.*\.zip/
   draft: true
   prerelease: true
   on:
