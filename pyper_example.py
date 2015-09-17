@@ -10,7 +10,6 @@ import numpy as np
 import pyper
 import sys
 
-xs = np.linspace(0,1,10)
 
 
 # additional path searches
@@ -32,20 +31,23 @@ for b in Rexes:
         break
 print("Using R: ", Rexe)
 
-
 #Open a pyper instance
 r1 = pyper.R(use_pandas=True, RCMD=Rexe) 
+# Perform a simple computation
+xs = np.linspace(0,1,10)
 r1.assign("xs", xs) 
 r1("DFRAME=data.frame(xs)")
 r1("result <- DFRAME[xs]*2")   
+# Retrieve the result
 result = r1.get("result")
 try:
     # R 3.0.4 linux
     data = result.as_matrix().reshape(-1)
-except:
+except AttributeError:
+    # `result` is already an ndarray.
     # R 3.2.2 windows
     data = result.reshape(-1)
-        
+# Validate the result
 assert np.allclose(2*xs, data), "pyper does not work"
 
 print("Everything OK: numpy and pyper working.")
