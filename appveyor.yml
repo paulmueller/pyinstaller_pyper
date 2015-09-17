@@ -45,7 +45,6 @@ install:
 
   # Determine platform
   - '%PYTHON%/python -c "import platform; print platform.uname()"'
-  - '%PYTHON%/python -c "import sys; print sys.maxint"'
   - '%PYTHON%/python -c "import sys; print sys.version"'
 
   # Prepend newly installed Python to the PATH of this build (this cannot be
@@ -53,18 +52,14 @@ install:
   # the parent CMD process).
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
-
   # Check that we have the expected version and architecture for Python
   - "python --version"
-
   - "pip freeze"
-  
   # Install package-specific libraries  
   - "conda install --yes pip"
   - "conda install --yes anaconda-client"
   # install pyper
-  - "conda install --yes pyper"
-  
+  - "pip install pyper"
   # Install pyinstaller
   - 'ECHO Downloading %PYWIN_DL%'
   - ps: (new-object net.webclient).DownloadFile("$env:PYWIN_DL", 'C:/pywin_inst.exe')
