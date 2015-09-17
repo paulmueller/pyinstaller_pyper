@@ -38,7 +38,10 @@ install:
   - choco install -y InnoSetup
   # install R
   - choco install -y r.project
-  - ps: "type C:/ProgramData/chocolatey/logs/chocolatey.log"
+  # find out where R is installed:
+  #- ps: "type C:/ProgramData/chocolatey/logs/chocolatey.log"
+  # list files of installation:
+  - ps: "dir C:/ProgramData/chocolatey/lib/R.Project"
   # Install Python (from the official .msi of http://python.org) and pip when
   # not already installed.
   - "powershell freeze_appveyor\\install.ps1"
@@ -74,6 +77,8 @@ shallow_clone: true
 build: off
 
 test_script:
+  # Set R path
+  - set PATH=%PATH%;"C:\\ProgramData\\chocolatey\\lib\\R.Project"
   - '%WITH_COMPILER% %PYTHON%/python pyper_example.py'
 
 after_test:
