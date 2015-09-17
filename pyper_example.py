@@ -15,16 +15,16 @@ Rpaths = list()
 # win
 Rroot_win = "C:\\Program Files\\R"
 if os.path.exists(Rroot_win):
-    Rpaths += [ os.path.join(Rroot_win, d) for d in os.listdir(Rroot_win) ]
-    # win frozen
-    if hasattr(sys, "frozen"):
-        Rroot_win_frozen = os.path.abspath(sys._MEIPASS)
-        Rpaths += [  os.path.join(Rroot_win_frozen, d) for d in os.listdir(Rroot_win_frozen) ]
+    for append in ["", "\\bin\\i386"]:
+        Rpaths += [ os.path.join(Rroot_win, d+append) for d in os.listdir(Rroot_win) ]
+        # win frozen
+        if hasattr(sys, "frozen"):
+            Rroot_win_frozen = os.path.abspath(sys._MEIPASS)
+            Rpaths += [  os.path.join(Rroot_win_frozen, d+append) for d in os.listdir(Rroot_win_frozen) ]
 # linux
 Rpaths += ["/usr/bin"]
 
-
-
+print(Rpaths)
 
 Rexes = list()
 for binary in ["R", "R.exe"]:
