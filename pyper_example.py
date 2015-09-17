@@ -34,13 +34,18 @@ print("Using R: ", Rexe)
 
 
 #Open a pyper instance
-r1 = pyper.R(use_pandas = True, RCMD=Rexe) 
+r1 = pyper.R(use_pandas=True, RCMD=Rexe) 
 r1.assign("xs", xs) 
 r1("DFRAME=data.frame(xs)")
 r1("result <- DFRAME[xs]*2")   
 result = r1.get("result")
-data = result.as_matrix().reshape(-1)
-
+try:
+    # R 3.0.4 linux
+    data = result.as_matrix().reshape(-1)
+except:
+    # R 3.2.2 windows
+    data = result.reshape(-1)
+        
 assert np.allclose(2*xs, data), "pyper does not work"
 
 print("Everything OK: numpy and pyper working.")
