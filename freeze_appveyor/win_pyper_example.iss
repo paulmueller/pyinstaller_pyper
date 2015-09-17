@@ -31,8 +31,8 @@ ChangesAssociations=yes
 
 
 [Files]
-Source: "C:\projects\pyins\dist\pyper_example\pyper_example.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\projects\pyper example\dist\pyper_example\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\projects\pyinstaller-pyper\dist\pyper_example\pyper_example.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\projects\pyinstaller-pyper\dist\pyper_example\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; Copy the entire R installation
 Source: "C:\Program Files\R"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
