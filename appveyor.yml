@@ -11,7 +11,6 @@
 #  - master
 
 environment:
-
   global:
     # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
     # /E:ON and /V:ON options are not enabled in the batch script intepreter
@@ -39,6 +38,7 @@ install:
   - choco install -y InnoSetup
   # install R
   - choco install -y r.project
+  - "type C:\ProgramData\chocolatey\logs\chocolatey.log"
   # Install Python (from the official .msi of http://python.org) and pip when
   # not already installed.
   - "powershell freeze_appveyor\\install.ps1"
