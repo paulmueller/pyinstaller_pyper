@@ -105,7 +105,7 @@ artifacts:
 deploy:
   provider: GitHub
   auth_token:
-    secure: /b5SfmYssAfLaWi0qkPhxR5CruSVBZUurSQLEL3RAaRlHn6HTPrkIqvrLDk/8JxB
+    secure: vNJoHzF2YNRLunoAchagK5OiqOVjINe7tGxF/1HQb1+LjX5JsGx6rRKqLXzotL+H
   artifact: /.*\.exe/, /.*\.zip/
   draft: true
   prerelease: true
