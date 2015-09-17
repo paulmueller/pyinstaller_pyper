@@ -10,8 +10,6 @@ import numpy as np
 import pyper
 import sys
 
-
-
 # additional path searches
 Rpaths = ["C:\\Program Files\\R\\R-3.2.2\\bin\\i386",
           "C:\\Program Files\\R\\R-3.2.2",
@@ -44,9 +42,10 @@ try:
     # R 3.0.4 linux
     data = result.as_matrix().reshape(-1)
 except AttributeError:
-    # `result` is already an ndarray.
+    # `result` is already an ndarray?
     # R 3.2.2 windows
-    data = result.reshape(-1)
+    print(result)
+    data = np.array(result, dtype=float).reshape(-1)
 # Validate the result
 assert np.allclose(2*xs, data), "pyper does not work"
 
