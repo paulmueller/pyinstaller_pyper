@@ -15,8 +15,8 @@ xs = np.linspace(0,1,10)
 
 # additional path searches
 Rpaths = ["C:\\Program Files\\R\\R-3.2.2\\bin\\i386",
-               "C:\\Program Files\\R\\R-3.2.2\\bin\\i386",
-               "/usr/bin/"]
+          "C:\\Program Files\\R\\R-3.2.2",
+          "/usr/bin/"]
 
 Rexes = list()
 for binary in ["R", "R.exe"]:
@@ -34,7 +34,7 @@ print("Using R: ", Rexe)
 
 
 #Open a pyper instance
-r1 = pyper.R(use_pandas = True, ) 
+r1 = pyper.R(use_pandas = True, RCMD=Rexe) 
 r1.assign("xs", xs) 
 r1("DFRAME=data.frame(xs)")
 r1("result <- DFRAME[xs]*2")   
