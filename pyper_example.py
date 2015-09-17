@@ -44,12 +44,12 @@ try:
 except AttributeError:
     # `result` is already an ndarray?
     # R 3.2.2 windows
-    print(result)
     data = np.array(result, dtype=float).reshape(-1)
+
 # Validate the result
 assert np.allclose(2*xs, data), "pyper does not work"
 
-print("Everything OK: numpy and pyper working.")
+print("Everything OK: numpy and pyper are working.")
 
 if hasattr(sys, "frozen"):
     print("Freezing of this script succeeded!")

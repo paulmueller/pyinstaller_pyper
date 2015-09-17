@@ -86,9 +86,10 @@ test_script:
   - '%WITH_COMPILER% %PYTHON%/python pyper_example.py'
 
 after_test:
-  - ps: "ls dist"
   # Run pyinstaller
   - "%WITH_COMPILER% pyinstaller -y pyper_example.spec"
+  - ps: "ls dist/pyper_example"
+  - ps: "./dist/pyper_example/pyper_example.exe"
   # Create InnoSetup installers
   # Set InnoSetup path here, because Cython complained about it.
   - set PATH=%PATH%;"C:\\Program Files (x86)\\Inno Setup 5"
