@@ -38,7 +38,7 @@ install:
   - choco install -y InnoSetup
   # install R
   - choco install -y r.project
-  - "type C:\ProgramData\chocolatey\logs\chocolatey.log"
+  - ps: "type C:/ProgramData/chocolatey/logs/chocolatey.log"
   # Install Python (from the official .msi of http://python.org) and pip when
   # not already installed.
   - "powershell freeze_appveyor\\install.ps1"
