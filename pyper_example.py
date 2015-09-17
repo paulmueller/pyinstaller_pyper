@@ -18,28 +18,31 @@ if os.path.exists(Rroot_win):
     for append in ["", "\\bin\\i386"]:
         # This will work independent of the installed R version
         Rpaths += [ os.path.join(Rroot_win, d+append) for d in os.listdir(Rroot_win) ]
-        # win frozen
-        if hasattr(sys, "frozen"):
-            Rroot_win_frozen = os.path.join(os.path.abspath(sys._MEIPASS), "R")
-            if os.path.exists(Rroot_win_frozen):
-                Rpaths += [  os.path.join(Rroot_win_frozen, d+append) for d in os.listdir(Rroot_win_frozen) ]
+# win frozen
+if hasattr(sys, "frozen"):
+    Rroot_win_frozen = os.path.join(os.path.abspath(sys._MEIPASS), "R")
+    if os.path.exists(Rroot_win_frozen):
+        Rpaths += [  os.path.join(Rroot_win_frozen, d+append) for d in os.listdir(Rroot_win_frozen) ]
 # linux
 Rpaths += ["/usr/bin"]
-
-print(Rpaths)
 
 Rexes = list()
 for binary in ["R", "R.exe"]:
     Rexes += [ os.path.join(loc, binary) for loc in Rpaths ]
 
+Rexe_avail = [ r for r in Rexes if os.path.exists(r) ]
+
+print(Rexe_avail)
+
+
 # standard path search:
-Rexe = "R"
+if len(Rexe_avail) == 0:
+    Rexe = "R"
+else:
+    Rexe = Rexe_avail[0]
 
 # find other installation:
-for b in Rexes:
-    if os.path.exists(b):
-        Rexe = b
-        break
+
 print("Using R: ", Rexe)
 
 #Open a pyper instance
