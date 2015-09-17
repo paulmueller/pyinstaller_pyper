@@ -40,8 +40,8 @@ install:
   - choco install -y r.project
   # find out where R is installed:
   - ps: "Get-ChildItem -Path C:\\ProgramData\\chocolatey -Filter Rgui.exe -Recurse"
-  - ps: "Get-ChildItem -Path C:\\Program Files -Filter Rgui.exe -Recurse"
-  - ps: "Get-ChildItem -Path C:\\Program Files(x86) -Filter Rgui.exe -Recurse"
+  - ps: "Get-ChildItem -Path 'C:\\Program Files' -Filter Rgui.exe -Recurse"
+  - ps: "Get-ChildItem -Path 'C:\\Program Files(x86)' -Filter Rgui.exe -Recurse"
   #- ps: "type C:/ProgramData/chocolatey/logs/chocolatey.log"
   # list files of installation:
   - ps: "dir C:/ProgramData/chocolatey/lib/R.Project"
