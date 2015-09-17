@@ -10,10 +10,21 @@ import numpy as np
 import pyper
 import sys
 
-# additional path searches
-Rpaths = ["C:\\Program Files\\R\\R-3.2.2\\bin\\i386",
-          "C:\\Program Files\\R\\R-3.2.2",
-          "/usr/bin/"]
+# additional search paths
+Rpaths = list()
+# win
+Rroot_win = "C:\\Program Files\\R"
+if os.path.exists(Rroot_win):
+    Rpaths += [ os.path.join(Rroot_win, d) for d in os.listdir(Rroot_win) ]
+    # win frozen
+    if hasattr(sys, "frozen"):
+        Rroot_win_frozen = os.path.abspath(sys._MEIPASS)
+        Rpaths += [  os.path.join(Rroot_win_frozen, d) for d in os.listdir(Rroot_win_frozen) ]
+# linux
+Rpaths += ["/usr/bin"]
+
+
+
 
 Rexes = list()
 for binary in ["R", "R.exe"]:
