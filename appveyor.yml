@@ -87,7 +87,7 @@ test_script:
 
 after_test:
   # Run pyinstaller
-  - "%WITH_COMPILER% pyinstaller -y pyper_example.spec"
+  - "%WITH_COMPILER% pyinstaller --console --onedir -y pyper_example.py"
   - ps: "ls dist/pyper_example"
   # Perform test with executable
   - ps: "./dist/pyper_example/pyper_example.exe"
