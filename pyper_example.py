@@ -21,7 +21,7 @@ if os.path.exists(Rroot_win):
         # This will work independent of the installed R version
         Rpaths += [ os.path.join(Rroot_win, d+append) for d in os.listdir(Rroot_win) ]
 # win frozen
-if not hasattr(sys, "frozen"):
+if hasattr(sys, "frozen"):
     Rroot_win_frozen = os.path.join(os.path.abspath(sys._MEIPASS), "R")
     if os.path.exists(Rroot_win_frozen):
         for append in append_folders:
