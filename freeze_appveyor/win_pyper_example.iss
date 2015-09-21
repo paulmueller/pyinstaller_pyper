@@ -3,11 +3,11 @@
 
 #define MyAppName "pyinstaller-pyper_example"
 #define MyzmAppName "pyinstaller-pyper_example"
-#define MyAppVersion "0.1.0"
+#define MyAppVersion "0.1.1"
 #define MyAppPublisher "Example Publisher"
 #define MyAppURL "http://example.com"
 #define MyAppPlatform "win32"
-#define MyAppExeName "pyper example.exe"
+#define MyAppExeName "pyper_example.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
