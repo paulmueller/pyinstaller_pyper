@@ -3,7 +3,7 @@
 
 #define MyAppName "pyinstaller-pyper_example"
 #define MyzmAppName "pyinstaller-pyper_example"
-#define MyAppVersion "0.1.1"
+#define MyAppVersion "0.1.2"
 #define MyAppPublisher "Example Publisher"
 #define MyAppURL "http://example.com"
 #define MyAppPlatform "win32"
