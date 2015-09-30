@@ -137,30 +137,34 @@ def linmixmod(xs, treatment, timeunit, RCMD=Rexe):
     #Delete some first characters made by R
     Model_string= Model_string[23:]
     #in case you prefer a dict for the Model output, do:
-    #Model_dict = r1.get("summary(Model)")   
+    #Model_dict = np.array(r1.get("summary(Model)")) 
     Anova_string = r1("Anova")
     Anova_string = Anova_string[14:]
-    #Anova_dict = r1.get("Anova")
+    #Anova_dict = np.array(r1.get("Anova"))
     Coef_string = r1("coef(Model)")
     Coef_string = Coef_string[20:]
     #"anova" from R does a likelihood ratio test which gives a p-Value 
-    p = r1.get("Anova$Pr[2]")   
+    p = np.array(r1.get("Anova$Pr[2]"))
 
     #Obtain p-Value using a normal approximation
     #Extract coefficients
     r1("coefs <- data.frame(coef(summary(Model)))")   
     r1("coefs$p.normal=2*(1-pnorm(abs(coefs$t.value)))")
-#    p_normal = r1.get("coefs$p.normal")
-#    p_normal = p_normal[1]
+
+    #p_normal = np.array(r1.get("coefs$p.normal"))
+    #p_normal = p_normal[1]
     
-    Coeffs = r1.get("coefs")
+    # Convert to array, depending on platform or R version, this is a DataFrame
+    # or a numpy array, so we convert it to an array.
+    Coeffs = np.array(r1.get("coefs"))
+    
     #The Average value of treatment 1
-    Estimate = round(Coeffs.iloc[0,0],2)
+    Estimate = round(Coeffs[0,0],2)
     #The Std Error of the average value of treatment 1    
-    StdErrorEstimate = round(Coeffs.iloc[0,1],2)
+    StdErrorEstimate = round(Coeffs[0,1],2)
     #treatment 2 leads to a change of the Estimate by the value "FixedEffect"
-    FixedEffect=round(Coeffs.iloc[1,0],2)   
-    StdErrorFixEffect = round(Coeffs.iloc[1,1],2)
+    FixedEffect=round(Coeffs[1,0],2)   
+    StdErrorFixEffect = round(Coeffs[1,1],2)
    
     results = {"Full Summary":"LINEAR MIXED MODEL: \n " + Model_string+ 
     "\nFULL COEFFICIENT TABLE:\n" + Coef_string + 
