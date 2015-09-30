@@ -119,7 +119,7 @@ def linmixmod(xs, treatment, timeunit, RCMD=Rexe):
     timeunit = np.concatenate(timeunit)
 
     #Open a pyper instance
-    r1 = pyper.R(use_pandas = True) 
+    r1 = pyper.R(use_pandas=True, RCMD=RCMD) 
     r1.assign("xs", xs) 
     #Transfer the vectors to R
     r1.assign("treatment", treatment)
