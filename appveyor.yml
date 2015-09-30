@@ -84,8 +84,9 @@ test_script:
   # Set R path
   - set PATH=%PATH%;"C:\\Program Files\\R\\R-3.2.2\\bin\\i386"
   # Install package lme4
-  - R -e 'install.packages("lme4", repos="http://cran.r-project.org")'
+  - R -e "install.packages('lme4', repos='http://cran.r-project.org')"
   - '%WITH_COMPILER% %PYTHON%/python pyper_example.py'
+  - '%WITH_COMPILER% %PYTHON%/python pyper_example_package.py'
 
 after_test:
   # Run pyinstaller
