@@ -155,7 +155,9 @@ def linmixmod(xs, treatment, timeunit, RCMD=Rexe):
     #p_normal = p_normal[1]
     
     # Convert to array, depending on platform or R version, this is a DataFrame
-    # or a numpy array, so we convert it to an array.
+    # or a numpy array, so we convert it to an array. Because on Windows the
+    # result is an array with subarrays of type np.void, we must access the
+    # elements with Coeffs[0][0] instead of Coeffs[0,0].
     Coeffs = np.array(r1.get("coefs"))
     #The Average value of treatment 1
     Estimate = Coeffs[0][0]
@@ -185,4 +187,4 @@ if __name__ == "__main__":
          ]
     res = linmixmod(xs=xs,treatment=treatment,timeunit=timeunit)
     
-    assert res["Estimate"]==136.64
+    assert res["Estimate"] == 136.63650509663600019
