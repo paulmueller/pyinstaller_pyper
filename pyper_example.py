@@ -66,6 +66,8 @@ if __name__ == "__main__":
     r1("result <- DFRAME[xs]*2")   
     # Retrieve the result
     result = r1.get("result")
+    import IPython
+    IPython.embed()
     try:
         # R 3.0.4 linux
         data = result.as_matrix().reshape(-1)

@@ -157,7 +157,8 @@ def linmixmod(xs, treatment, timeunit, RCMD=Rexe):
     # Convert to array, depending on platform or R version, this is a DataFrame
     # or a numpy array, so we convert it to an array.
     Coeffs = np.array(r1.get("coefs"))
-    
+    print("result:", Coeffs)
+    print("result shape:", Coeffs.shape)
     #The Average value of treatment 1
     Estimate = round(Coeffs[0,0],2)
     #The Std Error of the average value of treatment 1    
