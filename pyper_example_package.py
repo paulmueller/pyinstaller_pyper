@@ -156,18 +156,14 @@ def linmixmod(xs, treatment, timeunit, RCMD=Rexe):
     
     # Convert to array, depending on platform or R version, this is a DataFrame
     # or a numpy array, so we convert it to an array.
-    Coeffs = r1.get("coefs")
-    print("class", Coeffs.__class__)
-    Coeffs = np.array(Coeffs)
-    print("class array", Coeffs.__class__)
-    print("class subarray", Coeffs[0].__class__)
+    Coeffs = np.array(r1.get("coefs"))
     #The Average value of treatment 1
-    Estimate = round(Coeffs[0,0],2)
+    Estimate = Coeffs[0][0]
     #The Std Error of the average value of treatment 1    
-    StdErrorEstimate = round(Coeffs[0,1],2)
+    StdErrorEstimate = Coeffs[0][1]
     #treatment 2 leads to a change of the Estimate by the value "FixedEffect"
-    FixedEffect=round(Coeffs[1,0],2)   
-    StdErrorFixEffect = round(Coeffs[1,1],2)
+    FixedEffect = Coeffs[1][0]   
+    StdErrorFixEffect = Coeffs[1][1]
    
     results = {"Full Summary":"LINEAR MIXED MODEL: \n " + Model_string+ 
     "\nFULL COEFFICIENT TABLE:\n" + Coef_string + 
