@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 A Python script that uses numpy and pyper with R and the "lme4" library.
+
+Install the "lme4" library with:
+
+    R -e "install.packages('lme4', repos='http://cran.r-project.org')"
+
 """
 from __future__ import division, print_function
 
@@ -187,4 +192,4 @@ if __name__ == "__main__":
          ]
     res = linmixmod(xs=xs,treatment=treatment,timeunit=timeunit)
     
-    assert res["Estimate"] == 136.63650509663600019
+    assert np.allclose([res["Estimate"]], [136.63650509])
