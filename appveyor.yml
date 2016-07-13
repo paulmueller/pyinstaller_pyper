@@ -23,15 +23,13 @@ environment:
     WITH_COMPILER: "cmd /E:ON /V:ON /C .\\freeze_appveyor\\run_with_compiler.cmd"
 
   matrix:
-    - PYTHON: "C:\\Python27-conda32"
+    - PYTHON: "C:\\Miniconda"
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "32"
-      PYWIN_DL: "https://downloads.sourceforge.net/project/pywin32/pywin32/Build%20219/pywin32-219.win32-py2.7.exe"
 
-#    - PYTHON: "C:\\Python27-conda64"
+#    - PYTHON: "C:\\Miniconda-x64"
 #      PYTHON_VERSION: "2.7"
 #      PYTHON_ARCH: "64"
-#      PYWIN_DL: "https://downloads.sourceforge.net/project/pywin32/pywin32/Build%20219/pywin32-219.win-amd64-py2.7.exe"
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
@@ -50,9 +48,6 @@ install:
   # find out where R is installed: "C:\Program Files\R\R-3.2.2\bin\i386"
   #- ps: "Get-ChildItem -Path C:\\ProgramData\\chocolatey -Filter Rgui.exe -Recurse"
   #- ps: "Get-ChildItem -Path 'C:\\Program Files' -Filter Rgui.exe -Recurse"
-  # Install Python (from the official .msi of http://python.org) and pip when
-  # not already installed.
-  - "powershell freeze_appveyor\\install.ps1"
 
   # Determine platform
   - '%PYTHON%/python -c "import platform; print platform.uname()"'
@@ -67,8 +62,7 @@ install:
   - "python --version"
   - "pip freeze"
   # Install package-specific libraries  
-  - "conda install --yes pip"
-  - "conda install --yes anaconda-client"
+  - "conda install --yes pip numpy anaconda-client"
   # install pyper
   - "pip install pyper"
   # Install pyinstaller
